@@ -1,22 +1,32 @@
 {
-  "name": "qrcode-generator",
-  "version": "1.0.0",
-  "description": "QR Code Generator",
-  "scripts": {
-    "start": "yarn parcel src/index.html"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vitorbritto/qrcode-generator.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vitorbritto/qrcode-generator/issues"
-  },
-  "homepage": "https://github.com/vitorbritto/qrcode-generator#readme",
-  "devDependencies": {
-    "parcel": "^2.8.2"
-  }
+    "name": "wheaterdash",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "chart.js": "^4.4.7",
+        "daisyui": "5.0.0-beta.6",
+        "framer-motion": "^12.0.6",
+        "next": "15.1.6",
+        "react": "^19.0.0",
+        "react-chartjs-2": "^5.3.0",
+        "react-dom": "^19.0.0",
+        "zustand": "^5.0.3"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@types/node": "^20.17.16",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "eslint": "^9",
+        "eslint-config-next": "15.1.6",
+        "postcss": "^8",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5"
+    }
 }
