@@ -1,9 +1,9 @@
 interface UnitToggleProps {
-  unit: "C" | "F";
-  onToggle: (unit: "C" | "F") => void;
+  unit: 'C' | 'F'
+  onToggle: (unit: 'C' | 'F') => void
 }
 
-export default function UnitToggle({ unit, onToggle }: UnitToggleProps) {
+const UnitToggle = ({ unit, onToggle }: UnitToggleProps) => {
   return (
     <div className="form-control">
       <label className="label cursor-pointer">
@@ -11,11 +11,13 @@ export default function UnitToggle({ unit, onToggle }: UnitToggleProps) {
         <input
           type="checkbox"
           className="toggle toggle-primary"
-          checked={unit === "F"}
-          onChange={() => onToggle(unit === "C" ? "F" : "C")}
+          checked={unit === 'F'}
+          onChange={() => onToggle(unit === 'C' ? 'F' : 'C')}
         />
         <span className="label-text ml-2">°F</span>
       </label>
     </div>
-  );
+  )
 }
+
+export default UnitToggle

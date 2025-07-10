@@ -1,10 +1,10 @@
-import { useFavorites } from "@/store/useFavorites";
-import { useState } from "react";
-import AddLocationModal from "./AddLocationModal";
+import { useFavorites } from '@/store/useFavorites'
+import { useState } from 'react'
+import AddLocationModal from './AddLocationModal'
 
-export default function FavoriteLocations() {
-  const { favorites, removeFavorite } = useFavorites();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const FavoriteLocations = () => {
+  const { favorites, removeFavorite } = useFavorites()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <>
@@ -16,12 +16,10 @@ export default function FavoriteLocations() {
             {favorites.length === 0 ? (
               <div className="text-center py-8 text-base-content/70">
                 <p>No favorite locations yet</p>
-                <p className="text-sm">
-                  Add some locations to track their weather
-                </p>
+                <p className="text-sm">Add some locations to track their weather</p>
               </div>
             ) : (
-              favorites.map((location) => (
+              favorites.map(location => (
                 <div
                   key={location.id}
                   className="card card-compact bg-base-300 hover:bg-base-300/70 transition-colors"
@@ -78,19 +76,15 @@ export default function FavoriteLocations() {
           </div>
 
           <div className="card-actions justify-end flex-col flex-1 items-end mt-4">
-            <button
-              className="btn btn-primary"
-              onClick={() => setIsModalOpen(true)}
-            >
+            <button className="btn btn-primary" onClick={() => setIsModalOpen(true)}>
               Add New Location
             </button>
           </div>
         </div>
       </div>
-      <AddLocationModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      <AddLocationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
-  );
+  )
 }
+
+export default FavoriteLocations

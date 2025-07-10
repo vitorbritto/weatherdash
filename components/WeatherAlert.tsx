@@ -1,13 +1,13 @@
 interface WeatherAlertProps {
-  type: "warning" | "info";
-  message: string;
+  type: 'warning' | 'info'
+  message: string
 }
 
-export default function WeatherAlert({ type, message }: WeatherAlertProps) {
+const WeatherAlert = ({ type, message }: WeatherAlertProps) => {
   return (
     <div className={`alert alert-${type} shadow-lg`}>
       <div>
-        {type === "warning" ? (
+        {type === 'warning' ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="stroke-current flex-shrink-0 h-6 w-6"
@@ -39,5 +39,7 @@ export default function WeatherAlert({ type, message }: WeatherAlertProps) {
         <span>{message}</span>
       </div>
     </div>
-  );
+  )
 }
+
+export default WeatherAlert

@@ -1,35 +1,30 @@
-import { useState } from "react";
-import { useFavorites, Location } from "@/store/useFavorites";
+import { useState } from 'react'
+import { useFavorites, Location } from '@/store/useFavorites'
 
 interface AddLocationModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen: boolean
+  onClose: () => void
 }
 
-export default function AddLocationModal({
-  isOpen,
-  onClose,
-}: AddLocationModalProps) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { addFavorite } = useFavorites();
+const AddLocationModal = ({ isOpen, onClose }: AddLocationModalProps) => {
+  const [searchTerm, setSearchTerm] = useState('')
+  const { addFavorite } = useFavorites()
 
   const handleAddLocation = () => {
-    // Aqui você implementaria a busca real na API de clima
-    // Este é apenas um exemplo
     const newLocation: Location = {
       id: Date.now().toString(),
       name: searchTerm,
-      country: "BR",
+      country: 'BR',
       temp: 25,
-      condition: "Sunny",
-    };
+      condition: 'Sunny'
+    }
 
-    addFavorite(newLocation);
-    onClose();
-    setSearchTerm("");
-  };
+    addFavorite(newLocation)
+    onClose()
+    setSearchTerm('')
+  }
 
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <div className="modal modal-open">
@@ -41,7 +36,7 @@ export default function AddLocationModal({
             placeholder="Search for a city..."
             className="input input-bordered w-full"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={e => setSearchTerm(e.target.value)}
           />
         </div>
         <div className="modal-action">
@@ -58,5 +53,7 @@ export default function AddLocationModal({
         </div>
       </div>
     </div>
-  );
+  )
 }
+
+export default AddLocationModal

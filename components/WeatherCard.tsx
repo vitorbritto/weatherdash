@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import UnitToggle from "./UnitToggle";
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import UnitToggle from './UnitToggle'
 // import TemperatureChart from "./TemperatureChart";
 import {
   Chart as ChartJS,
@@ -11,8 +11,8 @@ import {
   Title,
   Tooltip,
   Filler,
-  Legend,
-} from "chart.js";
+  Legend
+} from 'chart.js'
 
 // Registrar os componentes necessários do Chart.js
 ChartJS.register(
@@ -24,108 +24,108 @@ ChartJS.register(
   Tooltip,
   Filler,
   Legend
-);
+)
 
 interface WeatherData {
-  temp: number;
-  condition: string;
-  humidity: number;
-  wind: number;
-  pressure: number;
-  location: string;
+  temp: number
+  condition: string
+  humidity: number
+  wind: number
+  pressure: number
+  location: string
 }
 
-interface DayForecast {
-  day: string;
-  temp: number;
-  condition: string;
-  details: WeatherData;
+export interface DayForecast {
+  day: string
+  temp: number
+  condition: string
+  details: WeatherData
 }
 
-export default function WeatherCard() {
+const WeatherCard = () => {
   // Dados de exemplo expandidos com detalhes para cada dia
   const weekForecast: DayForecast[] = [
     {
-      day: "Today",
+      day: 'Today',
       temp: 22,
-      condition: "sunny",
+      condition: 'sunny',
       details: {
         temp: 22,
-        condition: "sunny",
+        condition: 'sunny',
         humidity: 75,
         wind: 12,
         pressure: 1015,
-        location: "São Paulo, BR",
-      },
+        location: 'São Paulo, BR'
+      }
     },
     {
-      day: "Tue",
+      day: 'Tue',
       temp: 24,
-      condition: "partly-cloudy",
+      condition: 'partly-cloudy',
       details: {
         temp: 24,
-        condition: "partly-cloudy",
+        condition: 'partly-cloudy',
         humidity: 70,
         wind: 15,
         pressure: 1012,
-        location: "São Paulo, BR",
-      },
+        location: 'São Paulo, BR'
+      }
     },
     {
-      day: "Wed",
+      day: 'Wed',
       temp: 21,
-      condition: "rainy",
+      condition: 'rainy',
       details: {
         temp: 21,
-        condition: "rainy",
+        condition: 'rainy',
         humidity: 85,
         wind: 18,
         pressure: 1008,
-        location: "São Paulo, BR",
-      },
+        location: 'São Paulo, BR'
+      }
     },
     {
-      day: "Thu",
+      day: 'Thu',
       temp: 23,
-      condition: "cloudy",
+      condition: 'cloudy',
       details: {
         temp: 23,
-        condition: "cloudy",
+        condition: 'cloudy',
         humidity: 78,
         wind: 10,
         pressure: 1014,
-        location: "São Paulo, BR",
-      },
+        location: 'São Paulo, BR'
+      }
     },
     {
-      day: "Fri",
+      day: 'Fri',
       temp: 25,
-      condition: "sunny",
+      condition: 'sunny',
       details: {
         temp: 25,
-        condition: "sunny",
+        condition: 'sunny',
         humidity: 65,
         wind: 8,
         pressure: 1018,
-        location: "São Paulo, BR",
-      },
-    },
-  ];
+        location: 'São Paulo, BR'
+      }
+    }
+  ]
 
-  const [selectedDay, setSelectedDay] = useState<DayForecast>(weekForecast[0]);
-  const [unit, setUnit] = useState<"C" | "F">("C");
+  const [selectedDay, setSelectedDay] = useState<DayForecast>(weekForecast[0])
+  const [unit, setUnit] = useState<'C' | 'F'>('C')
 
   // Função para converter Celsius para Fahrenheit
-  const convertTemp = (temp: number, unit: "C" | "F"): number => {
-    if (unit === "F") {
-      return Math.round((temp * 9) / 5 + 32);
+  const convertTemp = (temp: number, unit: 'C' | 'F'): number => {
+    if (unit === 'F') {
+      return Math.round((temp * 9) / 5 + 32)
     }
-    return temp;
-  };
+    return temp
+  }
 
   const getWeatherIcon = (condition: string) => {
     switch (condition) {
-      case "sunny":
+      case 'sunny':
         return (
           <path
             strokeLinecap="round"
@@ -133,8 +133,8 @@ export default function WeatherCard() {
             strokeWidth={2}
             d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
           />
-        );
-      case "rainy":
+        )
+      case 'rainy':
         return (
           <path
             strokeLinecap="round"
@@ -142,8 +142,8 @@ export default function WeatherCard() {
             strokeWidth={2}
             d="M20 16.5835C20 18.4712 18.4712 20 16.5835 20C14.6958 20 13.167 18.4712 13.167 16.5835C13.167 14.6958 16.5835 11 16.5835 11C16.5835 11 20 14.6958 20 16.5835Z"
           />
-        );
-      case "cloudy":
+        )
+      case 'cloudy':
         return (
           <path
             strokeLinecap="round"
@@ -151,7 +151,7 @@ export default function WeatherCard() {
             strokeWidth={2}
             d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
           />
-        );
+        )
       default:
         return (
           <path
@@ -160,13 +160,13 @@ export default function WeatherCard() {
             strokeWidth={2}
             d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
           />
-        );
+        )
     }
-  };
+  }
 
-  const handleUnitToggle = (newUnit: "C" | "F") => {
-    setUnit(newUnit);
-  };
+  const handleUnitToggle = (newUnit: 'C' | 'F') => {
+    setUnit(newUnit)
+  }
 
   return (
     <div className="card bg-base-200 shadow-xl">
@@ -199,9 +199,7 @@ export default function WeatherCard() {
             </div>
             <div>
               <p className="text-lg capitalize">{selectedDay.condition}</p>
-              <p className="text-sm opacity-70">
-                {selectedDay.details.location}
-              </p>
+              <p className="text-sm opacity-70">{selectedDay.details.location}</p>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -225,9 +223,7 @@ export default function WeatherCard() {
               </svg>
             </div>
             <div className="stat-title">Humidity</div>
-            <div className="stat-value text-primary">
-              {selectedDay.details.humidity}%
-            </div>
+            <div className="stat-value text-primary">{selectedDay.details.humidity}%</div>
           </div>
 
           <div className="stat">
@@ -254,9 +250,7 @@ export default function WeatherCard() {
               </svg>
             </div>
             <div className="stat-title">Wind</div>
-            <div className="stat-value text-primary">
-              {selectedDay.details.wind}km/h
-            </div>
+            <div className="stat-value text-primary">{selectedDay.details.wind}km/h</div>
           </div>
 
           <div className="stat">
@@ -285,12 +279,12 @@ export default function WeatherCard() {
 
         <div className="divider mt-6">Weekly Forecast</div>
         <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-          {weekForecast.map((day) => (
+          {weekForecast.map(day => (
             <div
               key={day.day}
               onClick={() => setSelectedDay(day)}
               className={`flex flex-col items-center bg-base-300 rounded-box p-3 cursor-pointer transition-colors hover:bg-base-300/70 ${
-                selectedDay.day === day.day ? "ring-2 ring-primary" : ""
+                selectedDay.day === day.day ? 'ring-2 ring-primary' : ''
               }`}
             >
               <span className="text-sm font-semibold">{day.day}</span>
@@ -305,9 +299,7 @@ export default function WeatherCard() {
                   {getWeatherIcon(day.condition)}
                 </svg>
               </div>
-              <span className="text-lg font-bold">
-                {convertTemp(day.temp, unit)}°
-              </span>
+              <span className="text-lg font-bold">{convertTemp(day.temp, unit)}°</span>
             </div>
           ))}
         </div>
@@ -316,5 +308,7 @@ export default function WeatherCard() {
         {/* <TemperatureChart data={weekForecast} unit={unit} /> */}
       </div>
     </div>
-  );
+  )
 }
+
+export default WeatherCard
